@@ -6,14 +6,22 @@ function createPlayer(name, symbol) {
     return {name, symbol, points, incrementPoints};
 }
 
-// to delete
 const player1 = createPlayer("David", "X");
 const player2 = createPlayer("Laura", "O");
 
 const gameBoard = (function () {
-    const board = ["", "", "", "", "", "", "", "", ""];
-    return {board};
+    let board = ["", "", "", "", "", "", "", "", ""];
+    const reset = () => {
+        board = ["", "", "", "", "", "", "", "", ""];
+        document.querySelectorAll(".game-square").forEach((div) => div.innerText = "");
+    };
+
+    return {board, reset};
 })();
+
+function continuePlayingCheck() {
+    document.querySelector(".play-again").style.display = "block";
+}
 
 const turnTracker = (function() {
     let turn = 1;
@@ -71,14 +79,13 @@ const gamePlayer = (function (e) {
         gameBoard.board[4] === currentPlayer.symbol && 
         gameBoard.board[6] === currentPlayer.symbol)
     ) {
-        console.log(`${currentPlayer.name} wins!`);
         currentPlayer.incrementPoints;
+        continuePlayingCheck();
     } else if(!gameBoard.board.includes("")) {
-        alert("It's a draw!");
+        continuePlayingCheck();
     }
     // increment turn 
     turnTracker.incrementTurn();
-
 })
 
 document.querySelectorAll(".game-square").forEach((div) => div.addEventListener("click", (e) => {
@@ -87,3 +94,9 @@ document.querySelectorAll(".game-square").forEach((div) => div.addEventListener(
     }
 }));
 
+document.querySelector(".restart").addEventListener("click", () => location.reload());
+
+document.querySelector(".continue").addEventListener("click", (e) => {
+    e.target.parentNode.style.display = "none";
+    gameBoard.reset();
+})
