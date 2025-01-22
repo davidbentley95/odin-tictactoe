@@ -44,8 +44,8 @@ const gamePlayer = (function (e) {
     // place tick
     gameBoard.board[e.target.id] = currentPlayer.symbol;
     e.target.innerText = currentPlayer.symbol;
-    e.target.style.color = currentPlayer.color;
-    console.log(e.target);
+    // e.target.style.color = currentPlayer.color;
+    // console.log(e.target);
     
     
     //check results
