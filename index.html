@@ -14,20 +14,20 @@
 <body>
     <div class="start-game">
         <div class="player1-profile">
-            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="35" viewBox="0 0 36 35" fill="none">
+            <svg class="player1-symbol" xmlns="http://www.w3.org/2000/svg" width="36" height="35" viewBox="0 0 36 35" fill="none">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M18 35C27.665 35 35.5 27.165 35.5 17.5C35.5 7.83502 27.665 0 18 0C8.33502 0 0.5 7.83502 0.5 17.5C0.5 27.165 8.33502 35 18 35ZM18 29.0426C24.3748 29.0426 29.5426 23.8748 29.5426 17.5C29.5426 11.1252 24.3748 5.95745 18 5.95745C11.6252 5.95745 6.45746 11.1252 6.45746 17.5C6.45746 23.8748 11.6252 29.0426 18 29.0426Z" fill="#39D4BB"/>
                </svg>
             <label for="player1">Player1 Name:</label>
-            <input type="text" name="player1" id="player1">
+            <input type="text" name="player1" id="player1" placeholder="Player1" value="Player1" required>
         </div>
         <div class="player2-profile">
-            <svg xmlns="http://www.w3.org/2000/svg" width="34" height="35" viewBox="0 0 34 35" fill="none">
+            <svg class="player2-symbol" xmlns="http://www.w3.org/2000/svg" width="34" height="35" viewBox="0 0 34 35" fill="none">
                 <path d="M30.5 31C30.3564 31 3.78723 3.85619 3.64362 4.00057M30.3564 4.00056L3.5 31" stroke="#D139D4" stroke-width="6.67365" stroke-linecap="round"/>
               </svg>
             <label for="player2">Player2 Name:</label>
-            <input type="text" name="player2" id="player2">
+            <input type="text" name="player2" id="player2" placeholder="Player2" value="Player2" required>
         </div>
-        <button class="start-game-button">Start Game</button>
+        <button type="submit" class="start-game-button">Start Game</button>
     </div>
     <div class="game-container">
         <div class="game-tracker">
@@ -37,7 +37,7 @@
                      <path fill-rule="evenodd" clip-rule="evenodd" d="M18 35C27.665 35 35.5 27.165 35.5 17.5C35.5 7.83502 27.665 0 18 0C8.33502 0 0.5 7.83502 0.5 17.5C0.5 27.165 8.33502 35 18 35ZM18 29.0426C24.3748 29.0426 29.5426 23.8748 29.5426 17.5C29.5426 11.1252 24.3748 5.95745 18 5.95745C11.6252 5.95745 6.45746 11.1252 6.45746 17.5C6.45746 23.8748 11.6252 29.0426 18 29.0426Z" fill="#39D4BB"/>
                     </svg>
                 </div>
-                <div><span class="player1">0</span> wins</div>
+                <div><span class="player1-score">0</span> wins</div>
             </div>
             <div class="player">
                 <div>
@@ -45,7 +45,7 @@
                         <path d="M30.5 31C30.3564 31 3.78723 3.85619 3.64362 4.00057M30.3564 4.00056L3.5 31" stroke="#D139D4" stroke-width="6.67365" stroke-linecap="round"/>
                       </svg>
                 </div>
-                <div><span class="player2">0</span> wins</div>
+                <div><span class="player2-score">0</span> wins</div>
             </div>
             <div class="player">
                 <div>
