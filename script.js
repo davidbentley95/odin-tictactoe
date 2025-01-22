@@ -1,13 +1,13 @@
-function createPlayer(name, symbol) {
+function createPlayer(name, symbol, color) {
     let points = 0;
     const incrementPoints = () => points++;
     
 
-    return {name, symbol, points, incrementPoints};
+    return {name, symbol, points, color, incrementPoints};
 }
 
-const player1 = createPlayer("David", "X");
-const player2 = createPlayer("Laura", "O");
+const player1 = createPlayer("David", "X", "#D139D4");
+const player2 = createPlayer("Laura", "O", "#39D4BB");
 
 const gameBoard = (function () {
     let board = ["", "", "", "", "", "", "", "", ""];
@@ -44,6 +44,9 @@ const gamePlayer = (function (e) {
     // place tick
     gameBoard.board[e.target.id] = currentPlayer.symbol;
     e.target.innerText = currentPlayer.symbol;
+    e.target.style.color = currentPlayer.color;
+    console.log(e.target);
+    
     
     //check results
     if(
