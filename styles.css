@@ -31,6 +31,7 @@ body {
     justify-content: center;
     align-items: center;
     font-size: 3rem;
+    transition: 0.2s ease-in-out;
 }
 
 .game-tracker {
@@ -45,6 +46,10 @@ body {
     justify-content: center;
     align-items: center;
     margin-bottom: 20px;
+}
+
+.game-square:hover {
+    transform: scale(1.1);
 }
 
 .current-player-name, 

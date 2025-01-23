@@ -1,5 +1,6 @@
 let player1;
 let player2;
+let draw;
 
 function createPlayer(name, symbol) {
     let points = 0;
@@ -54,8 +55,6 @@ const gamePlayer = (function (e) {
     // track who's turn
     let currentPlayer;
     let currentScore;
-
-    let drawScore = 0;
 
     if(turnTracker.getTurn() % 2 === 0){
         currentPlayer = player2;
@@ -112,11 +111,10 @@ const gamePlayer = (function (e) {
         continuePlayingCheck();
         updateWinnerHeader(currentPlayer);
     } else if(!gameBoard.board.includes("")) {
-        drawScore++;
-        document.querySelector(".draw").innerText = drawScore;
-        document.querySelector(".winner-header").innerText = "DRAW";
-        document.querySelector(".winner-header").style.display = "flex";
+        draw.incrementPoints();
+        document.querySelector(".draw").innerText = draw.getPoints();
         continuePlayingCheck();
+        updateWinnerHeader(draw);
     }
     // increment turn 
     turnTracker.incrementTurn();
@@ -145,9 +143,13 @@ document.querySelector(".start-game-button").addEventListener("click", (e) => {
     const player1Symbol = e.target.parentNode.querySelector(".player1-symbol")
     const player2Name = e.target.parentNode.querySelector("#player2").value
     const player2Symbol = e.target.parentNode.querySelector(".player2-symbol")
+
+    const drawName = "DRAW";
+    const drawSymbol = document.querySelector(".draw-symbol");
     
     player1 = createPlayer(player1Name, player1Symbol);
     player2 = createPlayer(player2Name, player2Symbol);
+    draw = createPlayer(drawName, drawSymbol);
    
     document.querySelector(".start-game").style.display = "none";
     document.querySelector(".game-container").style.display = "block";
