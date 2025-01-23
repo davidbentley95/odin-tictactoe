@@ -35,8 +35,27 @@ body {
 
 .game-tracker {
     display: flex;
+    min-width: 320px;
     justify-content: space-around;
     margin-bottom: 15px;
+}
+
+.game-container h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.current-player-name, 
+.current-player-symbol,
+.winner-player-name,
+.winner-player-symbol {
+    margin-left: 10px;
+}
+
+.game-container .winner-header {
+    display: none;
 }
 
 .player {
@@ -48,6 +67,20 @@ body {
 
 .play-again {
     display: none;
+    gap: 20px;
+}
+
+.play-again button {
+    font-family: "Jua", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 24px;
+    padding: 10px;
+    width: 50%;
+}
+
+.play-again button:hover {
+    cursor: pointer;
 }
 
 .game-container {
@@ -87,4 +120,8 @@ body {
     font-size: 24px;
     padding: 10px;
     width: 50%;
+}
+
+.start-game-button:hover {
+    cursor: pointer;
 }

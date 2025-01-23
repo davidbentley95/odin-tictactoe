@@ -20,7 +20,9 @@ const gameBoard = (function () {
 })();
 
 function continuePlayingCheck() {
-    document.querySelector(".play-again").style.display = "block";
+    document.querySelector(".play-again").style.display = "flex";
+    document.querySelector(".game-board").style.display = "none";
+    document.querySelector(".current-turn-tracker").style.display = "none";
 }
 
 const turnTracker = (function() {
@@ -32,10 +34,29 @@ const turnTracker = (function() {
     return {incrementTurn, getTurn};
 })();
 
+function updateCurrentPlayerHeader() {
+    if(turnTracker.getTurn() % 2 === 0){
+        document.querySelector(".current-player-name").innerText = player2.name;
+        document.querySelector(".current-player-symbol").innerHTML = player2.symbol.outerHTML;
+    } else {
+        document.querySelector(".current-player-name").innerText = player1.name;
+        document.querySelector(".current-player-symbol").innerHTML = player1.symbol.outerHTML;
+    }
+}
+
+function updateWinnerHeader(winner) {
+    document.querySelector(".winner-header").style.display = "flex";
+    document.querySelector(".winner-player-name").innerText = winner.name;
+    document.querySelector(".winner-player-symbol").innerHTML = winner.symbol.outerHTML;
+}
+
 const gamePlayer = (function (e) {
     // track who's turn
     let currentPlayer;
     let currentScore;
+
+    let drawScore = 0;
+
     if(turnTracker.getTurn() % 2 === 0){
         currentPlayer = player2;
         currentScore = document.querySelector(".player2-score");
@@ -43,6 +64,9 @@ const gamePlayer = (function (e) {
         currentPlayer = player1;
         currentScore = document.querySelector(".player1-score");
     }
+
+    document.querySelector(".current-player-name").innerText = currentPlayer.name;
+    document.querySelector(".current-player-symbol").innerHTML = currentPlayer.symbol.outerHTML;
 
     // place tick
     gameBoard.board[e.target.id] = currentPlayer.symbol;
@@ -86,13 +110,17 @@ const gamePlayer = (function (e) {
         currentPlayer.incrementPoints();
         currentScore.innerText = currentPlayer.getPoints();
         continuePlayingCheck();
-        console.log(gameBoard.board)
+        updateWinnerHeader(currentPlayer);
     } else if(!gameBoard.board.includes("")) {
+        drawScore++;
+        document.querySelector(".draw").innerText = drawScore;
+        document.querySelector(".winner-header").innerText = "DRAW";
+        document.querySelector(".winner-header").style.display = "flex";
         continuePlayingCheck();
-        console.log(gameBoard.board)
     }
     // increment turn 
     turnTracker.incrementTurn();
+    updateCurrentPlayerHeader();
 })
 
 document.querySelectorAll(".game-square").forEach((div) => div.addEventListener("click", (e) => {
@@ -106,6 +134,10 @@ document.querySelector(".restart").addEventListener("click", () => location.relo
 document.querySelector(".continue").addEventListener("click", (e) => {
     e.target.parentNode.style.display = "none";
     gameBoard.reset();
+    document.querySelector(".game-board").style.display = "grid";
+    document.querySelector(".current-turn-tracker").style.display = "flex";
+    document.querySelector(".winner-header").style.display = "none";
+    updateCurrentPlayerHeader();
 })
 
 document.querySelector(".start-game-button").addEventListener("click", (e) => {
@@ -119,4 +151,6 @@ document.querySelector(".start-game-button").addEventListener("click", (e) => {
    
     document.querySelector(".start-game").style.display = "none";
     document.querySelector(".game-container").style.display = "block";
+
+    updateCurrentPlayerHeader();
 })
