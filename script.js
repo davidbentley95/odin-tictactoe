@@ -94,7 +94,7 @@ const gamePlayer = (function (e) {
         gameBoard.board[4] === currentPlayer.symbol && 
         gameBoard.board[7] === currentPlayer.symbol) ||
 
-        (gameBoard.board[3] === currentPlayer.symbol && 
+        (gameBoard.board[2] === currentPlayer.symbol && 
         gameBoard.board[5] === currentPlayer.symbol && 
         gameBoard.board[8] === currentPlayer.symbol) ||
 
